@@ -5,21 +5,24 @@
 /* font-family: 'Jost', sans-serif; */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* font-family: 'Poppins', sans-serif; */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+/* font-family: "Raleway", sans-serif; */
 
 /*------------------ VARIABLES ------------------*/
 :root {
   --intro-fade-time: 1.5s;
   --logo-font: "Jost", sans-serif;
-  --heading-font: "Poppins", sans-serif;
-  --main-font: "Roboto Condensed", sans-serif;
+  --heading-font: "Raleway", sans-serif;
+  --main-font: "Roboto", sans-serif;
   --main-hue: 90;
   --main-color: hsl(var(--main-hue), 100%, 40%);
   --main-shadow-color: hsl(var(--main-hue), 100%, 20%);
   --heading-color: hsl(205, 100%, 15%);
   --text-color: #242424;
-  --title-size: calc(32px + 0.5vmin);
-  --subtitle-size: calc(16px + 0.5vmin);
-  --text-size: calc(13px + 0.5vmin);
+  --title-size: calc(2rem + 0.5vmin);
+  --subtitle-size: calc(1rem + 0.5vmin);
+  --text-size: calc(0.9rem + 20%);
+  --service-height: 70vh;
 }
 
 /*------------------ STYLES ------------------*/
@@ -36,7 +39,7 @@ body {
   width: 100%;
   min-height: 100vh;
   font-family: var(--main-font);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   color: #242424;
   overflow-x: hidden;
@@ -48,10 +51,11 @@ a {
 }
 
 button {
-  padding: 10px 30px;
-  font-size: 1.2rem;
-  font-family: var(--main-font);
+  padding: 0.7em 2em;
+  font-size: 1.1rem;
+  font-family: var(--heading-font);
   font-weight: 900;
+  letter-spacing: 0.05em;
   color: white;
   background: linear-gradient(var(--main-color), var(--main-shadow-color));
   border: 1px solid rgba(255, 255, 255, 1);
@@ -77,7 +81,7 @@ button:active {
   font-weight: 900;
   text-align: center;
   text-transform: capitalize;
-  letter-spacing: -1px;
+  letter-spacing: -0.02em;
   word-spacing: 1px;
   color: var(--heading-color);
   line-height: 1.15;
@@ -226,9 +230,10 @@ button:active {
   align-items: center;
   flex-direction: column;
   font-family: var(--logo-font);
-  font-size: calc(12px + 1vmin);
+  font-size: calc(1rem + 1vmin);
   font-weight: 900;
   text-align: center;
+  text-transform: capitalize;
   color: white;
   text-shadow: 0 0px 10px rgba(0, 0, 0, 0.7);
   white-space: nowrap;
@@ -257,7 +262,7 @@ button:active {
 }
 
 .nav-links-button {
-  padding: calc(4px + 1vh) calc(6px + 1vw);
+  padding: 0.7em 1.5em;
   font-size: calc(14px + 0.1vw);
   text-transform: uppercase;
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.3),
@@ -280,7 +285,7 @@ button:active {
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.9)
     ),
-    url("images/brick-steps.webp") 50% 30% / cover no-repeat;
+    url("images/header.webp") 50% 30% / cover no-repeat;
 }
 
 .header-text-wrapper {
@@ -326,9 +331,58 @@ button:active {
 }
 
 /*------------------ SERVICES ------------------*/
+
+.stone-work,
+.walls,
+.decks,
+.garden,
+.hardscape,
+.additional {
+  color: hsl(0, 0%, 75%);
+  filter: saturate(0.1);
+  transition: 0.2s ease;
+}
+
+.stone-work {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/stone.jpg");
+}
+
+.walls {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/wall.jpg");
+}
+
+.decks {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/deck.jpg");
+}
+.garden {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/wall2.jpg");
+}
+.hardscape {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/header.webp");
+}
+.additional {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+    center / cover no-repeat url("images/stone.jpg");
+}
+
+.stone-work:hover,
+.walls:hover,
+.decks:hover,
+.garden:hover,
+.hardscape:hover,
+.additional:hover {
+  color: white;
+  filter: saturate(1);
+}
+
+.about-container,
 .services-container {
   width: 100%;
-  padding: calc(50px + 3vh) calc(20px + 5vw);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -336,7 +390,9 @@ button:active {
   position: relative;
   background: linear-gradient(to bottom left, white, #e6e6e6);
 }
-
+.about-container {
+  padding: calc(50px + 5vh) 0;
+}
 .services-wrapper {
   width: 100%;
   display: flex;
@@ -344,7 +400,6 @@ button:active {
   align-items: center;
   flex-direction: column;
   column-gap: 5%;
-  row-gap: 5vh;
 }
 .services-wrapper-row {
   width: 100%;
@@ -356,60 +411,65 @@ button:active {
   flex-wrap: wrap;
 }
 
+.services-text-wrapper {
+  padding: calc(50px + 4vh) 0;
+}
+
 .services-title {
   margin-bottom: 1vh;
 }
+
 .services-text {
-  margin-bottom: 4vh;
-  font-size: var(--subtitle-size);
+  height: 100%;
+  padding: 0 calc(20px + 5vw);
   text-align: center;
-  letter-spacing: -1px;
+  font-family: var(--main-font);
+  font-size: var(--text-size);
+  font-weight: 400;
 }
 
 .service-container {
-  width: 47.5%;
-  /* height: 230px; */
+  width: 100%;
+  height: var(--service-height);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  /* border: 1px dashed hsl(0, 0%, 80%); */
+  align-items: center;
+  border-bottom: 1px dotted hsl(0, 0%, 80%);
 }
+.service-container:last-of-type {
+  border-bottom: none;
+}
+
 .service-container-right {
   flex-direction: row-reverse;
 }
 
-.service-image {
-  height: calc(128px + 1vmin);
-  aspect-ratio: 1;
-  margin: 0 calc(20px + 1vw);
-  align-self: center;
-}
-.service-icon-life {
-  background: center / 100% no-repeat url(/images/services/life-insurance.svg);
-}
-.service-icon-health {
-  background: center / 100% no-repeat url(/images/services/health-insurance.svg);
-}
-.service-icon-business {
-  background: center / 100% no-repeat
-    url(/images/services/business-insurance.svg);
-}
-.service-icon-financial {
-  background: center / 100% no-repeat
-    url(/images/services/financial-services.svg);
-}
-
 .service-text-wrapper {
   width: 100%;
-  padding: calc(10px + 1vh) 0;
+  height: calc(var(--service-height) * 0.7);
+  padding: 5vh calc(20px + 15%);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  background: hsla(0, 0%, 0%, 0.2);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
 }
+
+.service-container:hover .service-text-wrapper {
+  background: hsla(0, 0%, 0%, 0.4);
+  backdrop-filter: blur(3px) brightness(0.7);
+  -webkit-backdrop-filter: blur(3px) brightness(0.7);
+  transform: translateY(-3px);
+  text-shadow: 0 5px 3px rgba(0, 0, 0, 0.8);
+}
+
 .service-text-title-wrapper {
   width: 100%;
-  height: 100%;
 }
 .service-text-life {
   align-items: flex-start;
@@ -430,35 +490,23 @@ button:active {
 .service-title {
   margin-bottom: 1vh;
   font-family: var(--heading-font);
-  font-size: calc(18px + 1vmin);
+  font-size: calc(2rem + 2vmin);
   font-weight: 900;
-  letter-spacing: -1px;
+  text-transform: uppercase;
   line-height: 1;
 }
-
-.service-text {
-  width: 100%;
-  margin-bottom: 1vh;
-  font-family: var(--main-font);
-  font-size: var(--text-size);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--text-color);
-}
-
 .service-text-list {
   width: 100%;
-  padding: 0 6%;
-  font-family: var(--main-font);
-  font-size: var(--text-size);
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--text-color);
+  padding: 0 3%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
   align-self: flex-end;
+  font-family: var(--heading-font);
+  font-size: calc(1rem + 2vmin);
+  font-weight: 300;
+  text-transform: capitalize;
   list-style: inside square;
 }
 .service-text-list-right {
@@ -467,50 +515,11 @@ button:active {
 .service-text-list-item {
   width: 100%;
   height: 100%;
+  font-family: var(--heading-font);
+  font-size: calc(1rem + 30%);
+  font-weight: 300;
+  line-height: 1.4;
   text-transform: capitalize;
-}
-
-/*------------------ INSURANCE PROVIDERS ------------------*/
-.providers-container {
-  width: 100%;
-  padding: calc(20px + 1vh) calc(20px + 1vw);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  background: linear-gradient(to top right, white, #e6e6e6);
-  font-size: var(--title-size);
-}
-
-.providers-images-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  column-gap: 10%;
-  row-gap: 2vh;
-}
-
-.providers-image {
-  min-width: 110px;
-  width: 9%;
-  max-width: 150px;
-  height: 100px;
-  object-fit: cover;
-}
-.providers-image:hover {
-  transform: scale(1.05);
-}
-
-.provider-bg-bottom {
-  width: 100%;
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  fill: hsla(205, 100%, 20%, 1);
 }
 
 /*------------------ CONTACT ------------------*/
@@ -704,17 +713,18 @@ button:active {
 /*------------------ FOOTER ------------------*/
 .footer-container {
   width: 100%;
-  padding: 2vh 10%;
+  padding: 1vh 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #121212;
+  background: hsl(0, 0%, 4%);
   font-family: var(--main-font);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
   text-transform: capitalize;
   text-align: center;
   color: rgb(160, 160, 160);
+  border-top: 1px dotted hsl(0, 0%, 80%);
 }
 
 /*-------------------------------------- MEDIA QUERY MAX WIDTH 1100px ----------------------------------------------------------------------*/
@@ -731,7 +741,6 @@ button:active {
 
   .service-container {
     width: 100%;
-    height: auto;
   }
   .service-wrapper-row {
     flex-wrap: wrap;
@@ -813,7 +822,6 @@ button:active {
     font-size: calc(12px + 2.5vw);
     font-weight: 500;
     text-align: center;
-    letter-spacing: 0;
     word-spacing: 2px;
     color: rgba(255, 255, 255, 0.7);
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
@@ -840,7 +848,7 @@ button:active {
     font-family: "Poppins", sans-serif;
     font-size: calc(26px + 2.5vw);
     font-weight: 200;
-    letter-spacing: 5px;
+    letter-spacing: 0.3em;
     word-spacing: 2px;
     color: white;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);

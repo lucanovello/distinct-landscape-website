@@ -1,7 +1,3 @@
-document.cookie = "name=luca";
-document.cookie = "light_mode=true";
-document.cookie = "language=eng";
-
 const body = document.getElementById("body");
 const introScreen = document.getElementById("intro-screen");
 
