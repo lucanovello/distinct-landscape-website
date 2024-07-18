@@ -17,12 +17,18 @@
   --main-hue: 90;
   --main-color: hsl(var(--main-hue), 100%, 40%);
   --main-shadow-color: hsl(var(--main-hue), 100%, 20%);
+  --main-hover-color: hsl(var(--main-hue), 100%, 30%);
+  --main-shadow-hover-color: hsl(var(--main-hue), 100%, 10%);
+  --main-active-color: hsl(var(--main-hue), 100%, 20%);
+  --main-shadow-active-color: hsl(var(--main-hue), 100%, 5%);
   --heading-color: hsl(205, 100%, 15%);
   --text-color: #242424;
   --title-size: calc(2rem + 0.5vmin);
   --subtitle-size: calc(1rem + 0.5vmin);
   --text-size: calc(0.9rem + 20%);
   --service-height: 70vh;
+  --fade-transition-delay: 0.2s;
+  --fade-transition-incr: 0.1s;
 }
 
 /*------------------ STYLES ------------------*/
@@ -66,12 +72,19 @@ button {
   white-space: nowrap;
 }
 button:hover {
-  background: linear-gradient(hsl(205, 100%, 22%), hsl(205, 100%, 12%));
+  background: linear-gradient(
+    var(--main-hover-color),
+    var(--main-shadow-hover-color)
+  );
 }
 button:active {
-  background: linear-gradient(hsl(205, 100%, 25%), hsl(205, 100%, 15%));
+  background: linear-gradient(
+    var(--main-active-color),
+    var(--main-shadow-active-color)
+  );
   box-shadow: inset 2px 3px 3px rgba(0, 0, 0, 0.7);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  transition: 0.1s ease !important;
 }
 
 .section-title {
@@ -114,48 +127,25 @@ button:active {
 .fade-right {
   transform: translateX(-5vw);
 }
-.fade-up-transition,
-.fade-right-transition,
-.fade-left-transition,
-.fade-transition-1,
-.fade-transition-2,
-.fade-transition-3,
-.fade-transition-4,
-.fade-transition-5,
-.fade-transition-6,
-.fade-transition-7,
-.fade-transition-8,
-.fade-transition-9 {
-  transition-duration: 0.5s;
+.fade-up-transition {
+  transition-duration: 0.7s;
+  transition-delay: 0.2s;
   transition-timing-function: ease-in-out;
 }
-
-.fade-transition-1 {
-  transition-delay: 0.1s;
-}
-.fade-transition-2 {
-  transition-delay: 0.2s;
-}
-.fade-transition-3 {
-  transition-delay: 0.3s;
-}
-.fade-transition-4 {
-  transition-delay: 0.4s;
-}
-.fade-transition-5 {
+.fade-right-transition-header {
+  transition-duration: 0.7s;
   transition-delay: 0.5s;
+  transition-timing-function: ease-in-out;
 }
-.fade-transition-6 {
-  transition-delay: 0.6s;
+.fade-right-transition-header2 {
+  transition-duration: 0.7s;
+  transition-delay: 1s;
+  transition-timing-function: ease-in-out;
 }
-.fade-transition-7 {
-  transition-delay: 0.7s;
-}
-.fade-transition-8 {
-  transition-delay: 0.8s;
-}
-.fade-transition-9 {
-  transition-delay: 0.9s;
+.fade-right-transition,
+.fade-left-transition {
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
 }
 
 /*------------------ INTRO SCREEN ------------------*/
@@ -457,7 +447,7 @@ button:active {
   -webkit-backdrop-filter: blur(1px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
-  transition: 0.3s ease;
+  /* transition: 0.3s ease; */
 }
 
 .service-container:hover .service-text-wrapper {
