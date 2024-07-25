@@ -17,6 +17,7 @@
   --heading-font: "Jost", sans-serif;
   --alt-heading-font: "Roboto Slab", serif;
   --main-font: "Roboto", sans-serif;
+  --alt-font: "Raleway", sans-serif;
   --text-condensed-font: "Roboto Condensed", sans-serif;
   --main-hue: 90;
   --main-color: hsl(var(--main-hue), 80%, 40%);
@@ -28,15 +29,20 @@
   --heading-color: hsl(var(--main-hue), 80%, 15%);
   --text-color: #242424;
   --heading-gold: hsl(90, 100%, 20%);
-  --title-size: calc(2rem + 1.5vmin);
-  --subtitle-size: calc(1rem + 0.5vmin);
-  --text-size: 1rem;
-  --service-height: 90vh;
+  --title-font-size: calc(10.5rem + 1vmin);
+  --subtitle-font-size: calc(1rem + 1vmin);
+  --text-font-size: calc(0.8rem + 0.5vmin);
+  --service-height: 80vh;
   --fade-transition-delay: 0.2s;
   --fade-transition-incr: 0.1s;
   --box-shadow-cont: 0 4px 6px hsla(0, 0%, 0%, 0.3);
   --lazyload-dur: 0.6s;
   --service-border-rad: 4em;
+  --transition-duration: 1s;
+  --service-image-overlay: radial-gradient(
+    hsla(0, 0%, 0%, 0.2),
+    hsla(0, 0%, 0%, 0.5)
+  );
 }
 
 /*------------------ STYLES ------------------*/
@@ -110,38 +116,43 @@ button:active {
 /*------------------ LAZY LOADING EFFECT ------------------ */
 
 .fade-up,
+.fade-down,
 .fade-left,
 .fade-right {
   opacity: 0;
 }
 .fade-up {
-  transform: translateY(5vh);
+  transform: translateY(3vh);
+}
+.fade-down {
+  transform: translateY(-3vh);
 }
 .fade-left {
-  transform: translateX(5vw);
+  transform: translateX(50%);
 }
 .fade-right {
-  transform: translateX(-5vw);
+  transform: translateX(-50%);
 }
-.fade-up-transition {
-  transition-duration: 0.7s;
-  transition-delay: 0.2s;
-  transition-timing-function: ease-in-out;
+.fade-up-transition,
+.fade-down-transition {
+  transition-duration: 0.7s !important;
+  transition-delay: 0.2s !important;
+  transition-timing-function: ease-in-out !important;
 }
 .fade-right-transition-header {
-  transition-duration: 0.7s;
-  transition-delay: 0.5s;
-  transition-timing-function: ease-in-out;
+  transition-duration: 0.7s !important;
+  transition-delay: 0.5s !important;
+  transition-timing-function: ease-in-out !important;
 }
 .fade-right-transition-header2 {
-  transition-duration: 0.7s;
-  transition-delay: 1s;
-  transition-timing-function: ease-in-out;
+  transition-duration: 0.7s !important;
+  transition-delay: 1s !important;
+  transition-timing-function: ease-in-out !important;
 }
 .fade-right-transition,
 .fade-left-transition {
-  transition-duration: 0.6s;
-  transition-timing-function: ease-in-out;
+  transition-duration: 1s !important;
+  transition-timing-function: ease-in-out !important;
 }
 
 /*------------------ INTRO SCREEN ------------------*/
@@ -160,7 +171,7 @@ button:active {
 
 .fade-out {
   opacity: 0;
-  transition: 1.5s ease-in-out;
+  transition: 2.5s ease-in-out;
 }
 
 /*------------------ NAV ------------------*/
@@ -170,7 +181,7 @@ button:active {
 
 .nav-container {
   width: 100%;
-  padding: calc(15px + 1vh) calc(20px + 5vmax);
+  padding: 1vh calc(20px + 5vmax);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,13 +189,19 @@ button:active {
   top: 0;
   z-index: 99;
   gap: calc(50px + 1%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(2px);
   transition: 0.3s ease;
 }
 
 .nav-scrolling {
-  padding: 1vh calc(50px + 1vmax);
-  backdrop-filter: blur(10px) brightness(0.3);
-  -webkit-backdrop-filter: blur(10px) brightness(0.3);
+  padding: 0.7vh calc(50px + 1vmax);
+  background: linear-gradient(
+    hsla(100, 50%, 10%, 0.5),
+    hsla(100, 50%, 3%, 0.8)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -211,7 +228,7 @@ button:active {
   align-items: center;
   flex-direction: column;
   font-family: var(--logo-font);
-  font-size: calc(1rem + 1vmin);
+  font-size: 1.2rem;
   font-weight: 900;
   text-align: center;
   text-transform: capitalize;
@@ -282,9 +299,9 @@ button:active {
 }
 .header-title {
   width: 100%;
-  margin-bottom: 1vh;
+  margin-bottom: 4vh;
   font-family: var(--logo-font);
-  font-size: calc(36px + 2vmin);
+  font-size: calc(2rem + 2.5vmin);
   font-weight: 900;
   text-transform: uppercase;
   text-align: center;
@@ -293,14 +310,13 @@ button:active {
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 .header-text {
-  margin-bottom: 4vh;
-  font-family: var(--text-condensed-font);
-  font-size: calc(0.7rem + 1vmin);
-  font-weight: 100;
-  line-height: 1.6;
-  color: white;
-  text-align: justify;
-  text-align-last: center;
+  margin-bottom: 5vh;
+  font-family: var(--logo-font);
+  font-size: calc(1.2rem + 1vmin);
+  font-weight: 400;
+  color: hsl(0, 0%, 90%);
+  line-height: 1.4;
+  text-align: center;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 .header-cta {
@@ -346,7 +362,7 @@ button:active {
   align-items: center;
   position: relative;
   font-family: var(--heading-font);
-  font-size: calc(0.6rem + 1vmin);
+  font-size: calc(0.7rem + 0.7vmin);
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
@@ -377,7 +393,7 @@ button:active {
   justify-content: center;
   align-items: center;
   font-family: var(--alt-heading-font);
-  font-size: calc(1.6rem + 1.5vmin);
+  font-size: calc(2rem + 1vmin);
   font-weight: 900;
   text-align: center;
   text-transform: capitalize;
@@ -393,59 +409,58 @@ button:active {
 
 /*------------------ SERVICES ------------------*/
 
-.stone-work,
+.stone,
 .walls,
 .decks,
 .garden,
 .hardscape,
 .additional {
+  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7));
   color: hsl(0, 0%, 80%);
-  filter: saturate(0.5);
 }
-.stone-work:hover,
+.stone:hover,
 .walls:hover,
 .decks:hover,
 .garden:hover,
 .hardscape:hover,
 .additional:hover {
   color: white;
-  filter: saturate(1);
 }
 
-.stone-work {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+.stone {
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/stone.jpg");
   z-index: 6;
   box-shadow: 0 5px 10px hsla(0, 0%, 0%, 0.5);
 }
 
 .walls {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/wall.webp");
   z-index: 5;
   box-shadow: var(--box-shadow-cont);
 }
 
 .decks {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/deck.jpg");
   z-index: 4;
   box-shadow: var(--box-shadow-cont);
 }
 .garden {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/wall2.webp");
   z-index: 3;
   box-shadow: var(--box-shadow-cont);
 }
 .hardscape {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/header.webp");
   z-index: 2;
   box-shadow: var(--box-shadow-cont);
 }
 .additional {
-  background: radial-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.7)),
+  background: var(--service-image-overlay),
     center / cover no-repeat url("images/stone.jpg");
   z-index: 1;
   box-shadow: var(--box-shadow-cont);
@@ -487,30 +502,22 @@ button:active {
 
 .services-text-wrapper {
   width: 100%;
-  padding: 15vh 15%;
+  padding: 15vh 6%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
 
-.services-title {
-  width: 100%;
-  padding: 0 10%;
-  margin-bottom: 1vh;
-  font-family: var(--heading-font);
-  font-size: var(--title-size);
-}
-
 .services-text {
   width: 100%;
   height: 100%;
   font-family: var(--text-condensed-font);
-  font-size: calc(0.8rem + 1vmin);
+  font-size: var(--text-font-size);
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.4;
   text-align: center;
-  text-align-last: center;
+  color: hsl(0, 0%, 15%);
 }
 
 .service-container {
@@ -530,8 +537,8 @@ button:active {
 }
 
 .service-text-wrapper {
-  width: 100%;
-  max-width: 900px;
+  width: 50%;
+  min-width: 600px;
   height: calc(var(--service-height) * 0.6);
   padding: 1vh 5vmax;
   display: flex;
@@ -542,16 +549,7 @@ button:active {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
-  transition: 0.2s ease;
 }
-
-/* .service-container:hover .service-text-wrapper {
-  background: hsla(0, 0%, 0%, 0.4);
-  backdrop-filter: blur(3px) brightness(0.7);
-  -webkit-backdrop-filter: blur(3px) brightness(0.7);
-  transform: translateY(-3px);
-  text-shadow: 0 5px 3px rgba(0, 0, 0, 0.8);
-} */
 
 .service-text-title-wrapper {
   width: 100%;
@@ -631,8 +629,8 @@ button:active {
 }
 
 .contact-title {
-  color: hsl(0, 0%, 70%);
-  font-weight: 200;
+  color: hsl(90, 50%, 50%);
+  font-weight: 300;
 }
 
 .contact-subtitle {
@@ -645,11 +643,11 @@ button:active {
   justify-content: center;
   align-items: flex-start;
   font-family: var(--text-condensed-font);
-  font-size: calc(0.8rem + 1vmin);
+  font-size: var(--text-font-size);
   font-weight: 300;
+  line-height: 1.4;
   text-align: center;
-  text-align-last: center;
-  color: hsl(0, 0%, 50%);
+  color: hsl(0, 0%, 70%);
   transition: var(--lazyload-dur) ease-in-out;
 }
 .contact-text-phone {
@@ -658,11 +656,10 @@ button:active {
   justify-content: center;
   align-items: flex-start;
   font-family: var(--text-condensed-font);
-  font-size: calc(0.8rem + 1vmin);
+  font-size: var(--text-font-size);
   font-weight: 900;
-  text-align: center;
-  line-height: 1.5;
-  color: hsl(0, 0%, 70%);
+  line-height: 1.4;
+  color: hsl(0, 0%, 90%);
   transition: var(--lazyload-dur) ease-in-out;
 }
 .contact-text-phone:hover {
@@ -821,14 +818,6 @@ button:active {
     align-items: center;
     text-align: left;
   }
-
-  .service-container {
-    width: 100%;
-  }
-  .service-wrapper-row {
-    flex-wrap: wrap;
-  }
-
   .contact-container {
     justify-content: center;
   }
@@ -976,14 +965,21 @@ button:active {
     transform: rotate(-405deg);
     transition: 1s ease 0.1s, bottom 0.2s ease;
   }
-
-  .service-container {
-    width: 100%;
-    flex-direction: column;
+  .services-text-wrapper {
+    padding: 10vh 5%;
   }
   .service-text-wrapper {
-    row-gap: 1vh;
+    width: 100%;
+    min-width: unset;
+    height: calc(var(--service-height) * 0.6);
+    padding: 15% 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    border-radius: 0;
   }
+
   .services-wrapper-row {
     row-gap: 1vh;
   }

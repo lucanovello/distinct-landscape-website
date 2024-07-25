@@ -28,6 +28,7 @@ const contactSuccessMessage = document.getElementById(
 const footerElement = document.getElementById("footer-container");
 
 const fadeUpArr = document.querySelectorAll(".fade-up");
+const fadeDownArr = document.querySelectorAll(".fade-down");
 const fadeLeftArr = document.querySelectorAll(".fade-left");
 const fadeRightArr = document.querySelectorAll(".fade-right");
 
@@ -52,49 +53,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // FADE IN LOADING EFFECT ------------------------------------------------------------------------------------
   let options = {
-    rootMargin: "0px",
-    threshold: 0.2,
-  };
-  let options2 = {
-    rootMargin: "-150px",
-    threshold: 0.2,
+    rootMarginTop: "50px",
+    rootMarginBottom: "150px",
+    threshold: 0.1,
   };
 
-  let fadeUpObserver = new IntersectionObserver((entries) => {
+  let fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.remove("fade-up");
-        fadeUpObserver.unobserve(entry.target);
+        entry.target.classList.remove("fade-down");
+        entry.target.classList.remove("fade-left");
+        entry.target.classList.remove("fade-right");
+        fadeObserver.unobserve(entry.target);
       }
     });
   }, options);
 
-  let fadeLeftObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("fade-left");
-        fadeUpObserver.unobserve(entry.target);
-      }
-    });
-  }, options2);
-
-  let fadeRightObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("fade-right");
-        fadeUpObserver.unobserve(entry.target);
-      }
-    });
-  }, options2);
-
   fadeUpArr.forEach((fadeUp) => {
-    fadeUpObserver.observe(fadeUp);
+    fadeObserver.observe(fadeUp);
+  });
+  fadeDownArr.forEach((fadeDown) => {
+    fadeObserver.observe(fadeDown);
   });
   fadeLeftArr.forEach((fadeLeft) => {
-    fadeLeftObserver.observe(fadeLeft);
+    fadeObserver.observe(fadeLeft);
   });
   fadeRightArr.forEach((fadeRight) => {
-    fadeRightObserver.observe(fadeRight);
+    fadeObserver.observe(fadeRight);
   });
 
   // EVENT HANDLERS ------------------------------------------------------------------------------------
