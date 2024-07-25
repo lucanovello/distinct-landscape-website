@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $headers .= "X-Mailer: PHP/" . phpversion();
 
   // Send the email
-  mail('l_novello@hotmail.com', $finalSubject, $message, $headers);
+  mail('info@distinctlandscape.ca', $finalSubject, $message, $headers);
 
   // Send a response header to indicate success
   header('X-Contact-Form-Status: success');
