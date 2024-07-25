@@ -539,8 +539,8 @@ button:active {
 .service-text-wrapper {
   width: 50%;
   min-width: 600px;
-  height: calc(var(--service-height) * 0.6);
-  padding: 1vh 5vmax;
+  max-height: calc(var(--service-height) * 0.9);
+  padding: 2em 5vmax;
   display: flex;
   justify-content: center;
   align-items: flex-start;
