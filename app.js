@@ -1,12 +1,8 @@
 const body = document.getElementById("body");
 const introScreen = document.getElementById("intro-screen");
-
 const navContainer = document.getElementById("nav-container");
 const navMobileContainer = document.getElementById("nav-mobile-container");
-
 const navMobileLinks = document.querySelectorAll("#nav-mobile-links");
-const form = document.getElementById('form');
-
 const navMobileLinksContainer = document.getElementById(
   "nav-mobile-links-container"
 );
@@ -20,18 +16,16 @@ const navMobileHamburgerBottom = document.getElementById(
   "nav-mobile-hamburger-bottom"
 );
 const navMobileCloseItems = document.querySelectorAll(`[data-nav="true"]`);
-
 const contactForm = document.getElementById("form");
 const contactSuccessMessage = document.getElementById(
   "contact-success-message"
 );
-
 const footerElement = document.getElementById("footer-container");
-
 const fadeUpArr = document.querySelectorAll(".fade-up");
 const fadeDownArr = document.querySelectorAll(".fade-down");
 const fadeLeftArr = document.querySelectorAll(".fade-left");
 const fadeRightArr = document.querySelectorAll(".fade-right");
+let isNavMenuOpen = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   // INIT PAGE ------------------------------------------------------------------------------------
@@ -54,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // FADE IN LOADING EFFECT ------------------------------------------------------------------------------------
   let options = {
-    rootMargin: "50px",
+    rootMarginTop: "50px",
+    rootMarginBottom: "150px",
     threshold: 0.1,
   };
 
@@ -138,40 +133,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
- //  Contact form send to server and respond with success or error
-form.addEventListener('submit', (e) => {
-  // Prevent the form from being submitted
-  e.preventDefault();
-  // Get the form data
-  const formData = new FormData(form);
-  // Send the form data to the server using an XMLHttpRequest
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', '/sendmail.php');
-  xhr.onload = function () {
-      if (xhr.getResponseHeader('X-Contact-Form-Status') === 'success') {
-          // Display a success message
-          contactSuccessMessage.innerHTML =
-              '<span>&#10003;</span> Thank you! Your message has been sent';
-          contactSuccessMessage.classList = 'contact-success-message-show';
-          setTimeout(() => {
-              contactSuccessMessage.classList = 'contact-success-message-hide';
-          }, 2000);
-          document.getElementById('form-name').value = '';
-          document.getElementById('form-phone').value = '';
-          document.getElementById('form-email').value = '';
-          document.getElementById('form-subject').value = '';
-          document.getElementById('form-message').value = '';
+  // //  Contact form send to server and respond with success or error
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault(); // Prevent the form from being submitted
+
+    // Get the form data
+    const formData = new FormData(contactForm);
+    console.dir(contactForm);
+    // Send the form data to the server using an XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "sendmail.php");
+    xhr.onload = function () {
+      if (xhr.getResponseHeader("X-Contact-Form-Status") === "success") {
+        // Display a success message
+        contactSuccessMessage.innerHTML =
+          "<span>&#10003;</span> Thank you! Your message has been sent";
+        contactSuccessMessage.classList = "contact-success-message-show";
+        setTimeout(() => {
+          contactSuccessMessage.classList = "contact-success-message-hide";
+        }, 2000);
+        document.getElementById("contact-name").value = "";
+        document.getElementById("contact-phone").value = "";
+        document.getElementById("contact-email").value = "";
+        document.getElementById("contact-subject").value = "";
+        document.getElementById("contact-message").value = "";
       } else {
-          contactSuccessMessage.innerHTML =
-              '<span>&#9447;</span> Sorry there was an error, please try again later';
-          contactSuccessMessage.classList = 'contact-success-message-show';
-          setTimeout(() => {
-              contactSuccessMessage.classList = 'contact-success-message-hide';
-          }, 2000);
+        contactSuccessMessage.innerHTML =
+          "<span>&#9447;</span> Sorry there was an error, please try again later";
+        contactSuccessMessage.classList = "contact-success-message-show";
+        setTimeout(() => {
+          contactSuccessMessage.classList = "contact-success-message-hide";
+        }, 2000);
       }
-  };
-  xhr.send(formData);
-});
+    };
+    xhr.send(formData);
+  });
 
   // Insert the current year into the element
   if (footerElement) {
