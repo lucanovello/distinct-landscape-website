@@ -129,10 +129,10 @@ button:active {
   transform: translateY(-3vh);
 }
 .fade-left {
-  transform: translateY(50%);
+  transform: translateY(3vh);
 }
 .fade-right {
-  transform: translateY(50%);
+  transform: translateY(-3vh);
 }
 .fade-up-transition,
 .fade-down-transition {
@@ -575,21 +575,26 @@ button:active {
 }
 .garden {
   background: var(--service-image-overlay),
-    center / cover no-repeat url("images/wall2.webp");
+    center / cover no-repeat url("images/garden.jpg");
   z-index: 3;
   box-shadow: var(--box-shadow-cont);
 }
 .hardscape {
   background: var(--service-image-overlay),
-    center / cover no-repeat url("images/header.webp");
+    center / cover no-repeat url("images/lighting.jpg");
   z-index: 2;
   box-shadow: var(--box-shadow-cont);
 }
-.additional {
+.additional::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
   background: var(--service-image-overlay),
-    center / cover no-repeat url("images/stone.jpg");
-  z-index: 1;
+    center / cover no-repeat url("images/sprinkler.jpg");
+  transform: scaleX(-1);
   box-shadow: var(--box-shadow-cont);
+  z-index: 0;
 }
 
 .about-container,
@@ -652,6 +657,7 @@ button:active {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   border-bottom: 1px solid hsl(0, 0%, 100%);
 }
 .service-container:last-of-type {
@@ -746,7 +752,7 @@ button:active {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  background: center / cover no-repeat url("images/header_bw.webp"),
+  background: center / cover no-repeat url("images/wall2_bw.webp"),
     linear-gradient(
       hsla(var(--main-hue), 20%, 10%, 1),
       hsla(var(--main-hue), 20%, 3%, 1)
@@ -938,7 +944,7 @@ button:active {
 
 /*-------------------------------------- MEDIA QUERY MAX WIDTH 1100px ----------------------------------------------------------------------*/
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   .nav-container {
     display: none;
   }
@@ -978,8 +984,8 @@ button:active {
   }
   .service-text-wrapper {
     width: 100%;
-    min-width: unset;
-    height: calc(var(--service-height) * 0.6);
+    min-width: 200px;
+    height: calc(var(--service-height) * 0.5);
     padding: 15% 5%;
     display: flex;
     justify-content: center;
@@ -987,15 +993,12 @@ button:active {
     flex-direction: column;
     border-radius: 0;
   }
-
   .services-wrapper-row {
     row-gap: 1vh;
   }
-
   .service-text {
     margin: 0;
   }
-
   .service-icon-life {
     align-self: flex-start;
   }
@@ -1010,5 +1013,27 @@ button:active {
   }
   .form-line {
     flex-wrap: wrap;
+  }
+  .stone {
+    background-position: 50% 50%;
+  }
+  .walls {
+    background-size: cover;
+    background-position: 100% 100%;
+  }
+  .decks {
+    background-position: 50% 50%;
+  }
+  .garden {
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  .hardscape {
+    background-size: cover;
+    background-position: 50% 100%;
+  }
+  .additional::before {
+    background-size: cover;
+    background-position: 50% 100%;
   }
 }
